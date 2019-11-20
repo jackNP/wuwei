@@ -33,7 +33,27 @@ public class AccountController {
         Account account = accountService.findById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("account",account);
+        modelAndView.setViewName("updateUI");
         return modelAndView;
+    }
+
+    @RequestMapping("/del")
+    public String del(Integer id){
+        accountService.del(id);
+        return "redirect:findAll";
+    }
+
+    @RequestMapping("/update")
+    public String update(Account account){
+        accountService.update(account);
+        return "redirect:findAll";
+    }
+
+    @RequestMapping("/save")
+    public String save(Account account){
+        System.err.println(account);
+        accountService.save(account);
+        return "redirect:findAll";
     }
 
 }
